@@ -1,0 +1,396 @@
+Body Code
+
+<!-- Responsive Countdown Timer for Blogger -->
+<div id="countdown-container">
+
+    <h2 id="countdown-title">
+        ⏳ Short Term Internship Final Deadline
+    </h2>
+
+    <div class="countdown-grid">
+
+        <div class="time-card">
+            <span id="days">0</span>
+            <div class="label">Days</div>
+        </div>
+
+        <div class="time-card">
+            <span id="hours">0</span>
+            <div class="label">Hours</div>
+        </div>
+
+        <div class="time-card">
+            <span id="minutes">0</span>
+            <div class="label">Minutes</div>
+        </div>
+
+        <div class="time-card">
+            <span id="seconds">0</span>
+            <div class="label">Seconds</div>
+        </div>
+
+    </div>
+
+    <div id="ended-message"></div>
+
+</div>
+
+<style>
+#countdown-container{
+    max-width:900px;
+    margin:30px auto;
+    padding:15px;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Heading */
+#countdown-title{
+    display:inline-block;
+    background:#0d6efd;
+    color:#fff;
+    padding:12px 25px;
+    border-radius:12px;
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+/* Grid */
+.countdown-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+/* Cards */
+.time-card{
+    background:#ffffff;
+    border:3px solid #0d6efd;
+    border-radius:15px;
+    padding:20px 10px;
+    min-width:150px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+
+.time-card span{
+    display:block;
+    font-size:48px;
+    font-weight:bold;
+    color:#0d6efd;
+    line-height:1;
+}
+
+.label{
+    margin-top:10px;
+    font-size:16px;
+    font-weight:600;
+    text-transform:uppercase;
+    color:#444;
+}
+
+#ended-message{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+    color:green;
+}
+
+/* Tablet */
+@media screen and (max-width:768px){
+    #countdown-title{
+        font-size:26px;
+        width:100%;
+        box-sizing:border-box;
+    }
+
+    .time-card{
+        min-width:130px;
+    }
+
+    .time-card span{
+        font-size:40px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width:480px){
+    #countdown-title{
+        font-size:22px;
+        padding:10px 15px;
+    }
+
+    .countdown-grid{
+        gap:10px;
+    }
+
+    .time-card{
+        width:45%;
+        min-width:120px;
+        padding:15px 8px;
+    }
+
+    .time-card span{
+        font-size:34px;
+    }
+
+    .label{
+        font-size:13px;
+    }
+}
+</style>
+
+<script>
+(function () {
+
+    // Set deadline
+    const deadline = new Date("June 27, 2026 00:00:00").getTime();
+
+    function updateCountdown() {
+
+        const now = new Date().getTime();
+        const distance = deadline - now;
+
+        if (distance < 0) {
+            clearInterval(timer);
+
+            document.getElementById("days").innerHTML = "0";
+            document.getElementById("hours").innerHTML = "0";
+            document.getElementById("minutes").innerHTML = "0";
+            document.getElementById("seconds").innerHTML = "0";
+
+            document.getElementById("ended-message").innerHTML =
+                "🎉 Deadline Reached!";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = ("0" + hours).slice(-2);
+        document.getElementById("minutes").innerHTML = ("0" + minutes).slice(-2);
+        document.getElementById("seconds").innerHTML = ("0" + seconds).slice(-2);
+    }
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+
+})();
+</script>
+
+<!-- Announcements-->
+<!doctype html>
+
+
+<style>
+body{
+    margin:0;
+    background:#0f172a;
+    font-family:Arial,sans-serif;
+    color:#fff;
+    padding:20px;
+}
+
+.wrapper{
+    max-width:800px;
+    margin:auto;
+}
+
+.title{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.announcement-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.card{
+    background:#1e293b;
+    border-left:5px solid #22c55e;
+    border-radius:12px;
+    padding:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);
+    animation:fadeIn .4s ease;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.card-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.message{
+    margin-top:10px;
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+.date{
+    margin-top:12px;
+    text-align:right;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.badge{
+    background:#ef4444;
+    color:white;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.loading,
+.error{
+    text-align:center;
+    padding:20px;
+}
+
+.error{
+    color:#f87171;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:10px;
+    }
+
+    .title{
+        font-size:20px;
+    }
+
+    .card{
+        padding:14px;
+    }
+
+    .card-title{
+        font-size:16px;
+    }
+
+    .message{
+        font-size:14px;
+    }
+}
+</style>
+
+
+
+<div class="wrapper">
+
+    <div class="title">
+        📢 Latest Announcements
+    </div>
+
+    <div id="announcementBox" class="loading">
+        Loading announcements...
+    </div>
+
+</div>
+
+<script>
+
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR3Kd70fRDrVLwOqQd5lToVjB8X7ivRZndW5oc3PrjMTBG1TGr0_Ruy2fJjOpsZxh43UBQk69ZX3BZh/pub?output=csv";
+
+async function loadAnnouncements(){
+
+    try{
+
+        const response = await fetch(sheetURL);
+        const csv = await response.text();
+
+        const rows = csv
+            .trim()
+            .split("\n")
+            .map(row => row.split(","));
+
+        const dataRows = rows.slice(1).reverse();
+
+        let html = '<div class="announcement-list">';
+
+        dataRows.forEach((row,index)=>{
+
+            const title = row[0] || "";
+            const message = row[1] || "";
+            const date = row[2] || "";
+
+            html += `
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            ${title}
+                        </div>
+
+                        ${
+                            index === 0
+                            ? '<span class="badge">NEW</span>'
+                            : ''
+                        }
+
+                    </div>
+
+                    <div class="message">
+                        ${message}
+                    </div>
+
+                    <div class="date">
+                        📅 ${date}
+                    </div>
+
+                </div>
+            `;
+        });
+
+        html += '</div>';
+
+        document.getElementById("announcementBox").innerHTML =
+            dataRows.length
+            ? html
+            : '<div class="loading">No announcements found</div>';
+
+    }catch(error){
+
+        document.getElementById("announcementBox").innerHTML =
+            '<div class="error">Failed to load announcements</div>';
+
+        console.error(error);
+    }
+}
+
+loadAnnouncements();
+
+setInterval(loadAnnouncements,30000);
+
+</script></!doctype>
